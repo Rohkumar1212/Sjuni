@@ -196,7 +196,7 @@ const { isValidObjectId } = require("mongoose");
 const generateMarksheet = async (req, res) => {
     try {
         let { adminId,  sessionToken } = req.params;
-        let { universityName,consultantId, fathername, roll_number, passing_year, registration_number, passing_semester, mothername, category, obtained_the_degree_of, marksheet_description, userId, sr_number, st_number, subjects, passing_description, passing_criteria, marksheet_code, date_of_issue } = req.body;
+        let { universityName,consultantId, fathername, passing_year, passing_semester, mothername, category, obtained_the_degree_of, marksheet_description, userId, sr_number, st_number, subjects, passing_description, passing_criteria, marksheet_code, date_of_issue } = req.body;
         if (!adminId || !consultantId ||!userId || !sessionToken) {
             return res.status(400).send({ status: false, message: "All fields are required" });
         }
@@ -318,8 +318,8 @@ const generateMarksheet = async (req, res) => {
                 category,
                 marksheet_description,
                 student_name: user.name,
-                registration_number,
-                roll_number,
+                registration_number: user.registration_number,
+                roll_number: user.roll_number,
                 sr_number,
                 st_number,
                 subjects:subjectArr,

@@ -42,6 +42,8 @@ const addStudent = async (req, res) => {
     ) {
       let {
         name,
+        roll_number,
+        registration_number,
         father_name,
         mother_name,
         address,
@@ -56,6 +58,8 @@ const addStudent = async (req, res) => {
 
       if (
         !name ||
+        !roll_number ||
+        !registration_number ||
         !father_name ||
         !mother_name ||
         !address ||
@@ -91,6 +95,8 @@ const addStudent = async (req, res) => {
         userId: generateRandomAlphaNumericID(26),
         consultantId,
         name,
+        roll_number,
+        registration_number,
         father_name,
         mother_name,
         address,
@@ -661,16 +667,16 @@ const getMarksheetByStudent = async (req, res) => {
   try {
     let { rollNo, regNo } = req.params;
 
-    // let student = await userModel.findOne({
-    //   roll_number: rollNo,
-    //   registration_number: regNo,
-    // });
+    let student = await userModel.findOne({
+      roll_number: rollNo,
+      registration_number: regNo,
+    });
 
-    // if (!student) {
-    //   return res
-    //     .status(404)
-    //     .send({ status: false, message: "Student Not Found" });
-    // }
+    if (!student) {
+      return res
+        .status(404)
+        .send({ status: false, message: "Student Not Found" });
+    }
 
     let studentMarksheet = await marksheetModel.findOne({
       roll_number: rollNo,

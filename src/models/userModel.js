@@ -17,7 +17,18 @@ const userSchema = new mongoose.Schema(
             trim: true,
         },
 
-       
+        roll_number: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+
+        registration_number: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+
         father_name: {
             type: String,
             required: true,

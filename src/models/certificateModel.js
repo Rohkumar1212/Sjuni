@@ -9,9 +9,15 @@ const certificateSchema = new mongoose.Schema({
 
     consultantId: {
         type: String,
-    }, 
+    },
 
-    passing_year: {
+    university_name: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+
+    description: {
         type: String,
     },
 
@@ -31,7 +37,15 @@ const certificateSchema = new mongoose.Schema({
             type: String,
         }
     },
-   
+
+    diploma_certificate_heading: {
+        type: String,
+    },
+
+    this_is_to_certify: {
+        type: String,
+    },
+
     student_name: {
         type: String,
         trim: true,
@@ -59,7 +73,7 @@ const certificateSchema = new mongoose.Schema({
         type: String,
     },
 
-    division: {
+    obtained_the_degree_of: {
         type: String,
     },
 
@@ -67,7 +81,7 @@ const certificateSchema = new mongoose.Schema({
         type: String,
     },
 
-    borad_of_eduction: {
+    deploma_description: {
         type: String,
     },
 

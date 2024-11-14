@@ -90,16 +90,20 @@ const generateCertificate = async (req, res) => {
             };
 
             let {
-                passing_year,              
-                division,
-                borad_of_eduction,
+                description,
+                diploma_certificate_heading,
+                this_is_to_certify,
+                obtained_the_degree_of,
+                deploma_description,
                 date_of_issue
             } = req.body;
 
             if (
-                !passing_year || 
-                !division ||
-                !borad_of_eduction ||
+                !description ||
+                !diploma_certificate_heading ||
+                !this_is_to_certify ||
+                !obtained_the_degree_of ||
+                !deploma_description ||
                 !date_of_issue
             ) {
                 return res.status(400).send({ status: false, message: "All fields are required" });
@@ -109,17 +113,19 @@ const generateCertificate = async (req, res) => {
                 userId,
                 consultantId,
                 university_name: marksheet.universityName,
-                passing_year,
+                description,
                 st_number: marksheet.st_number,
-                sr_number: marksheet.sr_number,
+                sr_number: marksheet.sr_number,                
+                diploma_certificate_heading,
+                this_is_to_certify,
                 student_name: user.name,          
                 roll_number: marksheet.roll_number,
                 student_pic: marksheet.student_pic,
                 regregistration_number: marksheet.registration_number,
                 date_of_birth: user.date_of_birth,
-                division,
+                obtained_the_degree_of,
                 course_name: marksheet.programme,
-                borad_of_eduction,
+                deploma_description,
                 marksheet_code: marksheet.marksheet_code,
                 date_of_issue
             };
@@ -239,7 +245,7 @@ const getCertificateByStudent = async (req, res) => {
     try {
         let { name, roll_number, date_of_birth, phone, course_name } = req.body;
 
-        let student = await userModel.findOne({ name,father_name, roll_number, date_of_birth, phone, course_name });
+        let student = await userModel.findOne({ name, roll_number, date_of_birth, phone, course_name });
 
         if (!student) {
             return res.status(404).send({ status: false, message: "Student Not Found"});
